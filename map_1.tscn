@@ -1,0 +1,243 @@
+[gd_scene load_steps=32 format=3 uid="uid://b6cgy0j40ivsv"]
+
+[ext_resource type="Texture2D" uid="uid://dyx76hhg6q1bs" path="res://img/map1.png" id="1_6vvf5"]
+[ext_resource type="Texture2D" uid="uid://b6jx50u7yhyfr" path="res://img/Player.png" id="2_va02x"]
+[ext_resource type="Script" path="res://npc_elba.gd" id="3_ho2qc"]
+[ext_resource type="Texture2D" uid="uid://cxlxdxsil18ba" path="res://img/elba.png" id="4_pis1h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s62n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5t2x"]
+size = Vector2(90, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ectli"]
+size = Vector2(95, 183)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auhag"]
+size = Vector2(31, 132.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sg6t7"]
+radius = 19.0263
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfyfq"]
+size = Vector2(77.5, 44.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dptry"]
+size = Vector2(61, 176.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1dc81"]
+radius = 27.4591
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcxe5"]
+size = Vector2(297, 178.428)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdxit"]
+size = Vector2(192, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf8ak"]
+size = Vector2(134, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq23x"]
+radius = 6.55521
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_asfr0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kob3"]
+size = Vector2(156.214, 224.932)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idkf4"]
+size = Vector2(62.1626, 70.8299)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rb4ms"]
+size = Vector2(65.4329, 71.6409)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_px6oo"]
+radius = 21.2523
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kroe0"]
+radius = 18.6504
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wofip"]
+size = Vector2(31.1399, 68.1295)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w03sd"]
+size = Vector2(29.0813, 25.4102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ed4p"]
+size = Vector2(60.586, 168.969)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vurny"]
+size = Vector2(424.255, 166.402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or8ve"]
+size = Vector2(315.894, 182.49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8odea"]
+size = Vector2(92.8399, 41.9034)
+
+[sub_resource type="GDScript" id="GDScript_12tgc"]
+script/source = "extends CharacterBody2D
+
+var speed = 500  # 移動速度
+
+func _physics_process(delta: float) -> void:
+	var direction = Vector2.ZERO
+
+	if Input.is_action_pressed(\"ui_right\"):
+		direction.x += 1
+	if Input.is_action_pressed(\"ui_left\"):
+		direction.x -= 1
+	if Input.is_action_pressed(\"ui_down\"):
+		direction.y += 1
+	if Input.is_action_pressed(\"ui_up\"):
+		direction.y -= 1
+
+	# 衝突を考慮した移動
+	velocity = direction.normalized() * speed
+	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b4a5"]
+size = Vector2(18.5796, 11.3549)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rll4"]
+size = Vector2(4.48206, 5.27158)
+
+[node name="Map1" type="Sprite2D"]
+position = Vector2(798, 504)
+scale = Vector2(1.23791, 1.23295)
+texture = ExtResource("1_6vvf5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-2, 0)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_s62n8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-184, 195.5)
+shape = SubResource("RectangleShape2D_t5t2x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-272.5, 65.5)
+shape = SubResource("RectangleShape2D_ectli")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-212.5, 56.75)
+shape = SubResource("RectangleShape2D_auhag")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-370, 113)
+shape = SubResource("CircleShape2D_sg6t7")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-372.75, -27.75)
+shape = SubResource("RectangleShape2D_vfyfq")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-511.5, -189.25)
+shape = SubResource("RectangleShape2D_dptry")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-510, -92)
+shape = SubResource("CircleShape2D_1dc81")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-336.5, -189.786)
+shape = SubResource("RectangleShape2D_xcxe5")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-351, -116.5)
+shape = SubResource("RectangleShape2D_kdxit")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-321, -90)
+shape = SubResource("RectangleShape2D_bf8ak")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-564, -84)
+scale = Vector2(1.80756, 1.80615)
+shape = SubResource("CircleShape2D_aq23x")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-594, -141)
+shape = SubResource("CircleShape2D_asfr0")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-114.074, -183.029)
+shape = SubResource("RectangleShape2D_0kob3")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-160.755, -72.724)
+shape = SubResource("RectangleShape2D_idkf4")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-64.6447, -73.1295)
+shape = SubResource("RectangleShape2D_rb4ms")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-19.811, -98.95)
+shape = SubResource("CircleShape2D_px6oo")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(110.247, -50.2861)
+shape = SubResource("CircleShape2D_kroe0")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(111.641, -143.559)
+shape = SubResource("RectangleShape2D_wofip")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(174.872, -98.6781)
+shape = SubResource("RectangleShape2D_w03sd")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(159.12, -185.057)
+shape = SubResource("RectangleShape2D_8ed4p")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(388.462, -184.584)
+shape = SubResource("RectangleShape2D_vurny")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(256.846, 93.6781)
+shape = SubResource("RectangleShape2D_or8ve")
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-20.9934, 73.671)
+shape = SubResource("RectangleShape2D_8odea")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+collision_mask = 2
+script = SubResource("GDScript_12tgc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(45.2376, -17.8434)
+texture = ExtResource("2_va02x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(45.6414, -0.811066)
+shape = SubResource("RectangleShape2D_1b4a5")
+
+[node name="NPC_Elba" type="Sprite2D" parent="."]
+script = ExtResource("3_ho2qc")
+
+[node name="Elba" type="Sprite2D" parent="NPC_Elba"]
+position = Vector2(239.92, -103.816)
+scale = Vector2(1.78037, 1.67573)
+texture = ExtResource("4_pis1h")
+
+[node name="Area2D" type="Area2D" parent="NPC_Elba"]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Elba/Area2D"]
+position = Vector2(241.536, -99.7607)
+rotation = -3.14159
+scale = Vector2(3.46431, -3.43847)
+shape = SubResource("RectangleShape2D_6rll4")
+
+[connection signal="body_entered" from="NPC_Elba/Area2D" to="Player" method="_on_area_2d_body_entered"]
