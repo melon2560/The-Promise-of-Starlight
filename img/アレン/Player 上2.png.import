@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm1bcnihsadcs"
-path="res://.godot/imported/アレン差分1.png-b533ef6e53fdffdbe6cf436dd6923434.ctex"
+uid="uid://evm4vy70ml8"
+path="res://.godot/imported/Player 上2.png-1be890de7efa765d1af81bf5bcad13f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/アレン差分1.png"
-dest_files=["res://.godot/imported/アレン差分1.png-b533ef6e53fdffdbe6cf436dd6923434.ctex"]
+source_file="res://img/アレン/Player 上2.png"
+dest_files=["res://.godot/imported/Player 上2.png-1be890de7efa765d1af81bf5bcad13f2.ctex"]
 
 [params]
 

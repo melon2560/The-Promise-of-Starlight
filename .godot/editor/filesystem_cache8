@@ -1,24 +1,20 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1733469966
-area_2d.gd::GDScript::-1::1733466260::0::1::::<>Area2D<>::
+::res://::1733663117
+area_2d.gd::GDScript::-1::1733477316::0::1::::<>Area2D<>::
 icon.svg::CompressedTexture2D::3800619238866317132::1733383007::1733457223::1::::<><>::
-map_1.tscn::PackedScene::4566812081328909181::1733466267::0::1::::<><>::uid://dyx76hhg6q1bs::::res://img/map1.png<>uid://b6jx50u7yhyfr::::res://img/Player.png<>res://area_2d.gd<>uid://cxlxdxsil18ba::::res://img/elba.png
+map_1.tscn::PackedScene::4566812081328909181::1733582970::0::1::::<><>::uid://dyx76hhg6q1bs::::res://img/map1.png<>uid://bnw40raifeyc1::::res://img/アレン/Player.png<>res://npc_elba.gd<>uid://cxlxdxsil18ba::::res://img/elba.png
+npc_elba.gd::GDScript::-1::1733477132::0::1::::<>Sprite2D<>::
 player.gd::GDScript::-1::1733459145::0::1::::<>Sprite2D<>::
-README.md::TextFile::-1::1733383007::0::1::::<><>::
-::res://img/::1733465229
+README.md::TextFile::-1::1733494049::0::1::::<><>::
+::res://img/::1733576880
 captive_tomi-tileset.png::CompressedTexture2D::6555392588098369161::1733383007::1733457223::1::::<><>::
 CHANGES.txt::TextFile::-1::1733464242::0::1::::<><>::
 elba.png::CompressedTexture2D::6411296010793723814::1733465218::1733465229::1::::<><>::
 LICENSE.txt::TextFile::-1::1733464242::0::1::::<><>::
 map1.png::CompressedTexture2D::8893273668906813708::1733383007::1733457223::1::::<><>::
-Player.png::CompressedTexture2D::4582305646375569107::1733383007::1733457378::1::::<><>::
 preview.png::CompressedTexture2D::681208824626857466::1733464242::1733464345::1::::<><>::
 README.txt::TextFile::-1::1733464242::0::1::::<><>::
 sources.md::TextFile::-1::1733464242::0::1::::<><>::
-アレン.png::CompressedTexture2D::5761833355277700527::1733383007::1733457223::1::::<><>::
-アレン差分1.png::CompressedTexture2D::3282425613039712866::1733383007::1733457223::1::::<><>::
-アレン差分2.png::CompressedTexture2D::8672834109587675140::1733383007::1733457223::1::::<><>::
-ペンダント.png::CompressedTexture2D::5963393885432787491::1733383007::1733457223::1::::<><>::
 マップパーツ.png::CompressedTexture2D::7707947682620470931::1733383007::1733457223::1::::<><>::
 ::res://img/PNG/::1733464242
 ::res://img/PNG/24x32/::1733464345
@@ -26,3 +22,19 @@ thief.png::CompressedTexture2D::1195800802746373923::1733464242::1733464345::1::
 ::res://img/PNG/48x64_scale2x/::1733464345
 thief.png::CompressedTexture2D::9118388487018387792::1733464242::1733464345::1::::<><>::
 ::res://img/source/::1733464242
+::res://img/アレン/::1733579193
+Player 上0.png::CompressedTexture2D::6524119425647627165::1733577818::1733578484::1::::<><>::
+Player 上1.png::CompressedTexture2D::8904434680052695462::1733577894::1733578484::1::::<><>::
+Player 上2.png::CompressedTexture2D::9555554143450319::1733577957::1733578484::1::::<><>::
+Player 下1.png::CompressedTexture2D::2718343441037119346::1733577540::1733578484::1::::<><>::
+Player 下2.png::CompressedTexture2D::69040849236845803::1733577648::1733578484::1::::<><>::
+Player 右0.png::CompressedTexture2D::7789077768648577925::1733578071::1733578484::1::::<><>::
+Player 右1.png::CompressedTexture2D::6619532072767682035::1733578147::1733578484::1::::<><>::
+Player 右2.png::CompressedTexture2D::3784628400421632699::1733578217::1733578484::1::::<><>::
+Player 左0.png::CompressedTexture2D::6725348395738853947::1733578329::1733578484::1::::<><>::
+Player 左1.png::CompressedTexture2D::3533268704857294993::1733578395::1733578484::1::::<><>::
+Player 左2.png::CompressedTexture2D::6371756839495637524::1733578474::1733578484::1::::<><>::
+Player.png::CompressedTexture2D::3346098292481989550::1733576774::1733576777::1::::<><>::
+アレン.png::CompressedTexture2D::5761833355277700527::1733383007::1733576022::1::::<><>::
+アレン差分.png::CompressedTexture2D::8682572333005941250::1733576256::1733577173::1::::<><>::
+ペンダント.png::CompressedTexture2D::5963393885432787491::1733383007::1733576022::1::::<><>::

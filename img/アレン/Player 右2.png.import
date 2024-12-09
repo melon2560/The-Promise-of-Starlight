@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://codcs25u3ipsp"
-path="res://.godot/imported/アレン.png-880a2649743266713b46fad85fd5666b.ctex"
+uid="uid://bt6kjn85jbyf0"
+path="res://.godot/imported/Player 右2.png-15149c383737fa028f08b0060ed31035.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/アレン.png"
-dest_files=["res://.godot/imported/アレン.png-880a2649743266713b46fad85fd5666b.ctex"]
+source_file="res://img/アレン/Player 右2.png"
+dest_files=["res://.godot/imported/Player 右2.png-15149c383737fa028f08b0060ed31035.ctex"]
 
 [params]
 

@@ -1,9 +1,20 @@
-[gd_scene load_steps=32 format=3 uid="uid://b6cgy0j40ivsv"]
+[gd_scene load_steps=44 format=3 uid="uid://b6cgy0j40ivsv"]
 
 [ext_resource type="Texture2D" uid="uid://dyx76hhg6q1bs" path="res://img/map1.png" id="1_6vvf5"]
-[ext_resource type="Texture2D" uid="uid://b6jx50u7yhyfr" path="res://img/Player.png" id="2_va02x"]
+[ext_resource type="Texture2D" uid="uid://bnw40raifeyc1" path="res://img/アレン/Player.png" id="2_26d12"]
+[ext_resource type="Texture2D" uid="uid://cy7lj8ty5t4sn" path="res://img/アレン/Player 上0.png" id="3_csvjj"]
 [ext_resource type="Script" path="res://npc_elba.gd" id="3_ho2qc"]
+[ext_resource type="Texture2D" uid="uid://di8c8cu687elp" path="res://img/アレン/Player 右0.png" id="4_5mrhm"]
 [ext_resource type="Texture2D" uid="uid://cxlxdxsil18ba" path="res://img/elba.png" id="4_pis1h"]
+[ext_resource type="Texture2D" uid="uid://c222rgl4k4fb4" path="res://img/アレン/Player 左0.png" id="5_2g570"]
+[ext_resource type="Texture2D" uid="uid://dy4m0dnima4yc" path="res://img/アレン/Player 上1.png" id="6_hdi50"]
+[ext_resource type="Texture2D" uid="uid://evm4vy70ml8" path="res://img/アレン/Player 上2.png" id="7_p0i4u"]
+[ext_resource type="Texture2D" uid="uid://bey1ypsd11dpy" path="res://img/アレン/Player 下1.png" id="8_5a63d"]
+[ext_resource type="Texture2D" uid="uid://8pdffqi6ld8" path="res://img/アレン/Player 下2.png" id="9_3xsb5"]
+[ext_resource type="Texture2D" uid="uid://c1ksyxneun6l0" path="res://img/アレン/Player 右1.png" id="10_flhst"]
+[ext_resource type="Texture2D" uid="uid://bt6kjn85jbyf0" path="res://img/アレン/Player 右2.png" id="11_58dh6"]
+[ext_resource type="Texture2D" uid="uid://bqlsoi1hfc0g8" path="res://img/アレン/Player 左1.png" id="12_54vn1"]
+[ext_resource type="Texture2D" uid="uid://cw1r50jrkf6we" path="res://img/アレン/Player 左2.png" id="13_o8dc3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s62n8"]
 
@@ -20,7 +31,7 @@ size = Vector2(31, 132.5)
 radius = 19.0263
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfyfq"]
-size = Vector2(77.5, 44.5)
+size = Vector2(49.909, 43.3024)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dptry"]
 size = Vector2(61, 176.5)
@@ -78,38 +89,162 @@ size = Vector2(92.8399, 41.9034)
 [sub_resource type="GDScript" id="GDScript_12tgc"]
 script/source = "extends CharacterBody2D
 
-var speed = 500  # 移動速度
+var speed = 200  # 移動速度
+@onready var animated_sprite = $AnimatedSprite2D
 
-func _physics_process(delta: float) -> void:
+var animation_timer = 0.0
+var animation_frame = 1
+var animation_direction = \"下\"  # 初期値を設定
+
+func _physics_process(delta):
 	var direction = Vector2.ZERO
+	var is_moving = false
 
+	# 入力処理
 	if Input.is_action_pressed(\"ui_right\"):
 		direction.x += 1
+		animation_direction = \"右\"
+		is_moving = true
 	if Input.is_action_pressed(\"ui_left\"):
 		direction.x -= 1
+		animation_direction = \"左\"
+		is_moving = true
 	if Input.is_action_pressed(\"ui_down\"):
 		direction.y += 1
+		animation_direction = \"下\"
+		is_moving = true
 	if Input.is_action_pressed(\"ui_up\"):
 		direction.y -= 1
+		animation_direction = \"上\"
+		is_moving = true
 
-	# 衝突を考慮した移動
+	# アニメーションの更新
+	if is_moving:
+		# タイマーを更新
+		animation_timer += delta
+		if animation_timer > 0.2:  # フレームの切り替え間隔（秒）
+			animation_timer = 0
+			animation_frame = 1 if animation_frame == 2 else 2  # フレームを切り替え
+		var animation_name = \"移動_\" + animation_direction + str(animation_frame)
+		animated_sprite.play(animation_name)
+	else:
+		# 停止アニメーション（最後の方向に基づく）
+		var stop_animation_name = \"停止_\" + animation_direction
+		animated_sprite.play(stop_animation_name)
+
+	# 移動処理
 	velocity = direction.normalized() * speed
 	move_and_slide()
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b4a5"]
-size = Vector2(18.5796, 11.3549)
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ac05"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_csvjj")
+}],
+"loop": true,
+"name": &"停止_上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_26d12")
+}],
+"loop": true,
+"name": &"停止_下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5mrhm")
+}],
+"loop": true,
+"name": &"停止_右",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2g570")
+}],
+"loop": true,
+"name": &"停止_左",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hdi50")
+}],
+"loop": true,
+"name": &"移動_上1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_p0i4u")
+}],
+"loop": true,
+"name": &"移動_上2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_5a63d")
+}],
+"loop": true,
+"name": &"移動_下1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_3xsb5")
+}],
+"loop": true,
+"name": &"移動_下2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_flhst")
+}],
+"loop": true,
+"name": &"移動_右1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_58dh6")
+}],
+"loop": true,
+"name": &"移動_右2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_54vn1")
+}],
+"loop": true,
+"name": &"移動_左1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_o8dc3")
+}],
+"loop": true,
+"name": &"移動_左2",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71e1g"]
+size = Vector2(19.0648, 14.0281)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rll4"]
 size = Vector2(4.48206, 5.27158)
 
 [node name="Map1" type="Sprite2D"]
-position = Vector2(798, 504)
-scale = Vector2(1.23791, 1.23295)
+position = Vector2(1178, 870)
+scale = Vector2(1.87539, 1.98603)
 texture = ExtResource("1_6vvf5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -134,7 +269,7 @@ position = Vector2(-370, 113)
 shape = SubResource("CircleShape2D_sg6t7")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-372.75, -27.75)
+position = Vector2(-386.545, -26.5918)
 shape = SubResource("RectangleShape2D_vfyfq")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
@@ -216,12 +351,21 @@ collision_mask = 2
 script = SubResource("GDScript_12tgc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(45.2376, -17.8434)
-texture = ExtResource("2_va02x")
+visible = false
+position = Vector2(45.8571, -9.56681)
+texture = ExtResource("2_26d12")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(46.9829, -15.2919)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(50.6561, -37.2603)
+sprite_frames = SubResource("SpriteFrames_5ac05")
+animation = &"停止_上"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(45.6414, -0.811066)
-shape = SubResource("RectangleShape2D_1b4a5")
+position = Vector2(51.7226, -29.7075)
+shape = SubResource("RectangleShape2D_71e1g")
 
 [node name="NPC_Elba" type="Sprite2D" parent="."]
 script = ExtResource("3_ho2qc")
@@ -232,6 +376,7 @@ scale = Vector2(1.78037, 1.67573)
 texture = ExtResource("4_pis1h")
 
 [node name="Area2D" type="Area2D" parent="NPC_Elba"]
+position = Vector2(-11.6138, 6.41274)
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Elba/Area2D"]
