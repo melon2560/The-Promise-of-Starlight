@@ -1,9 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://b6cgy0j40ivsv"]
+[gd_scene load_steps=46 format=3 uid="uid://b6cgy0j40ivsv"]
 
 [ext_resource type="Texture2D" uid="uid://dyx76hhg6q1bs" path="res://img/map1.png" id="1_6vvf5"]
 [ext_resource type="Texture2D" uid="uid://bnw40raifeyc1" path="res://img/アレン/Player.png" id="2_26d12"]
 [ext_resource type="Texture2D" uid="uid://cy7lj8ty5t4sn" path="res://img/アレン/Player 上0.png" id="3_csvjj"]
-[ext_resource type="Script" path="res://npc_elba.gd" id="3_ho2qc"]
 [ext_resource type="Texture2D" uid="uid://di8c8cu687elp" path="res://img/アレン/Player 右0.png" id="4_5mrhm"]
 [ext_resource type="Texture2D" uid="uid://cxlxdxsil18ba" path="res://img/elba.png" id="4_pis1h"]
 [ext_resource type="Texture2D" uid="uid://c222rgl4k4fb4" path="res://img/アレン/Player 左0.png" id="5_2g570"]
@@ -15,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bt6kjn85jbyf0" path="res://img/アレン/Player 右2.png" id="11_58dh6"]
 [ext_resource type="Texture2D" uid="uid://bqlsoi1hfc0g8" path="res://img/アレン/Player 左1.png" id="12_54vn1"]
 [ext_resource type="Texture2D" uid="uid://cw1r50jrkf6we" path="res://img/アレン/Player 左2.png" id="13_o8dc3"]
+[ext_resource type="Script" path="res://dialogue_system.gd" id="16_75yeb"]
+[ext_resource type="Script" path="res://area_2d.gd" id="16_v0v3d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s62n8"]
 
@@ -133,7 +134,7 @@ func _physics_process(delta):
 		animated_sprite.play(stop_animation_name)
 
 	# 移動処理
-	velocity = direction.normalized() * speed
+	self.velocity = direction.normalized() * speed
 	move_and_slide()
 "
 
@@ -239,11 +240,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71e1g"]
 size = Vector2(19.0648, 14.0281)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rll4"]
-size = Vector2(4.48206, 5.27158)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phjok"]
+size = Vector2(22.0631, 34.4557)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgnge"]
+size = Vector2(22.9286, 19.0633)
 
 [node name="Map1" type="Sprite2D"]
-position = Vector2(1178, 870)
+position = Vector2(1191, 855)
 scale = Vector2(1.87539, 1.98603)
 texture = ExtResource("1_6vvf5")
 
@@ -352,37 +356,63 @@ script = SubResource("GDScript_12tgc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 visible = false
+visibility_layer = 2
 position = Vector2(45.8571, -9.56681)
 texture = ExtResource("2_26d12")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+visibility_layer = 2
 position = Vector2(46.9829, -15.2919)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(50.6561, -37.2603)
+visibility_layer = 2
+position = Vector2(52.2558, -37.2603)
 sprite_frames = SubResource("SpriteFrames_5ac05")
-animation = &"停止_上"
+animation = &"停止_下"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+visibility_layer = 2
 position = Vector2(51.7226, -29.7075)
 shape = SubResource("RectangleShape2D_71e1g")
 
-[node name="NPC_Elba" type="Sprite2D" parent="."]
-script = ExtResource("3_ho2qc")
+[node name="Dialogue" type="CanvasLayer" parent="."]
+script = ExtResource("16_75yeb")
 
-[node name="Elba" type="Sprite2D" parent="NPC_Elba"]
-position = Vector2(239.92, -103.816)
-scale = Vector2(1.78037, 1.67573)
+[node name="ColorRect" type="ColorRect" parent="Dialogue"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.490196)
+
+[node name="CharNameLabel" type="Label" parent="Dialogue/ColorRect"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DialogueLabel" type="Label" parent="Dialogue/ColorRect"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="NPC_Elba" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Elba"]
+position = Vector2(239.05, -105.847)
+shape = SubResource("RectangleShape2D_phjok")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_Elba"]
+light_mask = 2
+position = Vector2(236.751, -101.71)
+scale = Vector2(1.92092, 1.70833)
 texture = ExtResource("4_pis1h")
 
 [node name="Area2D" type="Area2D" parent="NPC_Elba"]
-position = Vector2(-11.6138, 6.41274)
-collision_layer = 3
+collision_layer = 2
+script = ExtResource("16_v0v3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Elba/Area2D"]
-position = Vector2(241.536, -99.7607)
-rotation = -3.14159
-scale = Vector2(3.46431, -3.43847)
-shape = SubResource("RectangleShape2D_6rll4")
-
-[connection signal="body_entered" from="NPC_Elba/Area2D" to="Player" method="_on_area_2d_body_entered"]
+position = Vector2(239.15, -97.6472)
+shape = SubResource("RectangleShape2D_kgnge")

@@ -1,12 +1,6 @@
 extends Area2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _on_Area2D_body_entered(body):
-	print("シグナルが呼び出されました！")
+func _on_body_entered(body: Node2D):
+	if body.name == "Player":  # プレイヤーかどうか確認
+		var canvas_layer = get_node("/root/Map1/CanvasLayer")  # CanvasLayerノードを取得
+		canvas_layer.start_dialogue("エルバ", ["こんにちは！", "冒険者よ、気をつけて旅を続けてね！"])
