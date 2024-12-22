@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1733892489
+::res://::1734267125
 area_2d.gd::GDScript::-1::1733812725::0::1::::<>Area2D<>::
-dialogue_system.gd::GDScript::-1::1733812953::0::1::::<>CanvasLayer<>::
+dialogue_system.gd::GDScript::-1::1733970537::0::1::::<>Node<>::
 icon.svg::CompressedTexture2D::3800619238866317132::1733383007::1733457223::1::::<><>::
-map_1.tscn::PackedScene::4566812081328909181::1733892311::0::1::::<><>::uid://dyx76hhg6q1bs::::res://img/map1.png<>uid://bnw40raifeyc1::::res://img/アレン/Player.png<>uid://cy7lj8ty5t4sn::::res://img/アレン/Player 上0.png<>uid://di8c8cu687elp::::res://img/アレン/Player 右0.png<>uid://cxlxdxsil18ba::::res://img/elba.png<>uid://c222rgl4k4fb4::::res://img/アレン/Player 左0.png<>uid://dy4m0dnima4yc::::res://img/アレン/Player 上1.png<>uid://evm4vy70ml8::::res://img/アレン/Player 上2.png<>uid://bey1ypsd11dpy::::res://img/アレン/Player 下1.png<>uid://8pdffqi6ld8::::res://img/アレン/Player 下2.png<>uid://c1ksyxneun6l0::::res://img/アレン/Player 右1.png<>uid://bt6kjn85jbyf0::::res://img/アレン/Player 右2.png<>uid://bqlsoi1hfc0g8::::res://img/アレン/Player 左1.png<>uid://cw1r50jrkf6we::::res://img/アレン/Player 左2.png<>res://dialogue_system.gd<>res://area_2d.gd
+map_1.tscn::PackedScene::4566812081328909181::1733970585::0::1::::<><>::uid://dyx76hhg6q1bs::::res://img/map1.png<>uid://bnw40raifeyc1::::res://img/アレン/Player.png<>uid://cy7lj8ty5t4sn::::res://img/アレン/Player 上0.png<>uid://di8c8cu687elp::::res://img/アレン/Player 右0.png<>uid://cxlxdxsil18ba::::res://img/elba.png<>uid://c222rgl4k4fb4::::res://img/アレン/Player 左0.png<>uid://dy4m0dnima4yc::::res://img/アレン/Player 上1.png<>uid://evm4vy70ml8::::res://img/アレン/Player 上2.png<>uid://bey1ypsd11dpy::::res://img/アレン/Player 下1.png<>uid://8pdffqi6ld8::::res://img/アレン/Player 下2.png<>uid://c1ksyxneun6l0::::res://img/アレン/Player 右1.png<>uid://bt6kjn85jbyf0::::res://img/アレン/Player 右2.png<>uid://bqlsoi1hfc0g8::::res://img/アレン/Player 左1.png<>uid://cw1r50jrkf6we::::res://img/アレン/Player 左2.png<>res://dialogue_system.gd<>res://area_2d.gd
 npc_elba.gd::GDScript::-1::1733477132::0::1::::<>Sprite2D<>::
 player.gd::GDScript::-1::1733459145::0::1::::<>Sprite2D<>::
 README.md::TextFile::-1::1733494049::0::1::::<><>::

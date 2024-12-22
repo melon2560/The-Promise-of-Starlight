@@ -92,6 +92,9 @@ script/source = "extends CharacterBody2D
 
 var speed = 200  # 移動速度
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var dialogue_system = get_node(\"/root/Map1/Dialogue\")  # Dialogueノードへの参照
+
+var can_interact = false  # 会話可能かどうかを示すフラグ
 
 var animation_timer = 0.0
 var animation_frame = 1
@@ -118,7 +121,11 @@ func _physics_process(delta):
 		direction.y -= 1
 		animation_direction = \"上\"
 		is_moving = true
-
+		
+	# Fキーが押された時に会話を表示
+	if Input.is_action_just_pressed(\"ui_f\") and can_interact:
+		dialogue_system.show_dialogue(\"こんにちは！Elbaです。\")
+	
 	# アニメーションの更新
 	if is_moving:
 		# タイマーを更新
@@ -136,6 +143,15 @@ func _physics_process(delta):
 	# 移動処理
 	self.velocity = direction.normalized() * speed
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		can_interact = true
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.name == \"Player\":
+		can_interact = false
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ac05"]
@@ -378,23 +394,31 @@ shape = SubResource("RectangleShape2D_71e1g")
 [node name="Dialogue" type="CanvasLayer" parent="."]
 script = ExtResource("16_75yeb")
 
-[node name="ColorRect" type="ColorRect" parent="Dialogue"]
+[node name="DialogueBox" type="ColorRect" parent="Dialogue"]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 100.0
 color = Color(0, 0, 0, 0.490196)
 
-[node name="CharNameLabel" type="Label" parent="Dialogue/ColorRect"]
+[node name="CharNameLabel" type="Label" parent="Dialogue/DialogueBox"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 16
+text = "エルバ"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="DialogueLabel" type="Label" parent="Dialogue/ColorRect"]
+[node name="DialogueLabel" type="Label" parent="Dialogue/DialogueBox"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 200.0
+offset_bottom = 165.0
+theme_override_font_sizes/font_size = 18
+text = "こんにちは、冒険者さん！"
+autowrap_mode = 2
 
 [node name="NPC_Elba" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -416,3 +440,6 @@ script = ExtResource("16_v0v3d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Elba/Area2D"]
 position = Vector2(239.15, -97.6472)
 shape = SubResource("RectangleShape2D_kgnge")
+
+[connection signal="body_entered" from="NPC_Elba/Area2D" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="NPC_Elba/Area2D" to="Player" method="_on_area_2d_body_exited"]
