@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dyx76hhg6q1bs" path="res://img/map1.png" id="1_6vvf5"]
 [ext_resource type="Texture2D" uid="uid://bnw40raifeyc1" path="res://img/アレン/Player.png" id="2_26d12"]
+[ext_resource type="Script" path="res://dialogue_box.gd" id="2_ug1uq"]
 [ext_resource type="Texture2D" uid="uid://cy7lj8ty5t4sn" path="res://img/アレン/Player 上0.png" id="3_csvjj"]
 [ext_resource type="Texture2D" uid="uid://di8c8cu687elp" path="res://img/アレン/Player 右0.png" id="4_5mrhm"]
 [ext_resource type="Texture2D" uid="uid://cxlxdxsil18ba" path="res://img/elba.png" id="4_pis1h"]
@@ -14,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://bt6kjn85jbyf0" path="res://img/アレン/Player 右2.png" id="11_58dh6"]
 [ext_resource type="Texture2D" uid="uid://bqlsoi1hfc0g8" path="res://img/アレン/Player 左1.png" id="12_54vn1"]
 [ext_resource type="Texture2D" uid="uid://cw1r50jrkf6we" path="res://img/アレン/Player 左2.png" id="13_o8dc3"]
-[ext_resource type="Script" path="res://dialogue_system.gd" id="16_75yeb"]
 [ext_resource type="Script" path="res://area_2d.gd" id="16_v0v3d"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s62n8"]
@@ -90,9 +90,9 @@ size = Vector2(92.8399, 41.9034)
 [sub_resource type="GDScript" id="GDScript_12tgc"]
 script/source = "extends CharacterBody2D
 
-var speed = 200  # 移動速度
+var speed = 500  # 移動速度
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var dialogue_system = get_node(\"/root/Map1/Dialogue\")  # Dialogueノードへの参照
+@onready var dialogue_system = get_node(\"/root/Map1/CanvasLayer/DialogueBox\")  # Dialogueノードへの参照
 
 var can_interact = false  # 会話可能かどうかを示すフラグ
 
@@ -101,6 +101,11 @@ var animation_frame = 1
 var animation_direction = \"下\"  # 初期値を設定
 
 func _physics_process(delta):
+	
+	# 会話中は移動を無効化
+	if dialogue_system.is_dialogue_active:
+		return  # 処理を終了
+	
 	var direction = Vector2.ZERO
 	var is_moving = false
 
@@ -124,7 +129,7 @@ func _physics_process(delta):
 		
 	# Fキーが押された時に会話を表示
 	if Input.is_action_just_pressed(\"ui_f\") and can_interact:
-		dialogue_system.show_dialogue(\"こんにちは！Elbaです。\")
+		dialogue_system.show_dialogue(\"エルバ\", \"こんにちは！エルバです。\", [\"こんにちは！\", \"あなたは誰ですか？\"])
 	
 	# アニメーションの更新
 	if is_moving:
@@ -263,8 +268,8 @@ size = Vector2(22.0631, 34.4557)
 size = Vector2(22.9286, 19.0633)
 
 [node name="Map1" type="Sprite2D"]
-position = Vector2(1191, 855)
-scale = Vector2(1.87539, 1.98603)
+position = Vector2(3798.72, 2155.7)
+scale = Vector2(5.92399, 6.2447)
 texture = ExtResource("1_6vvf5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -382,43 +387,14 @@ position = Vector2(46.9829, -15.2919)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 visibility_layer = 2
-position = Vector2(52.2558, -37.2603)
+position = Vector2(47.1438, -15.0051)
 sprite_frames = SubResource("SpriteFrames_5ac05")
 animation = &"停止_下"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 visibility_layer = 2
-position = Vector2(51.7226, -29.7075)
+position = Vector2(47.3126, -7.95914)
 shape = SubResource("RectangleShape2D_71e1g")
-
-[node name="Dialogue" type="CanvasLayer" parent="."]
-script = ExtResource("16_75yeb")
-
-[node name="DialogueBox" type="ColorRect" parent="Dialogue"]
-visible = false
-offset_right = 500.0
-offset_bottom = 100.0
-color = Color(0, 0, 0, 0.490196)
-
-[node name="CharNameLabel" type="Label" parent="Dialogue/DialogueBox"]
-visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 30.0
-theme_override_font_sizes/font_size = 16
-text = "エルバ"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="DialogueLabel" type="Label" parent="Dialogue/DialogueBox"]
-visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 165.0
-theme_override_font_sizes/font_size = 18
-text = "こんにちは、冒険者さん！"
-autowrap_mode = 2
 
 [node name="NPC_Elba" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -440,6 +416,57 @@ script = ExtResource("16_v0v3d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_Elba/Area2D"]
 position = Vector2(239.15, -97.6472)
 shape = SubResource("RectangleShape2D_kgnge")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
+script = ExtResource("2_ug1uq")
+
+[node name="Button1" type="Button" parent="CanvasLayer/DialogueBox"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+offset_left = 2000.0
+offset_top = -140.0
+offset_right = 2200.0
+offset_bottom = -77.0
+theme_override_font_sizes/font_size = 35
+text = "aaaaaaaaaaaaaaaaaa"
+
+[node name="Button2" type="Button" parent="CanvasLayer/DialogueBox"]
+layout_mode = 2
+offset_left = 2000.0
+offset_top = -70.0
+offset_right = 2292.0
+offset_bottom = -7.0
+theme_override_font_sizes/font_size = 35
+text = "bbbbbbbbbbbbb"
+
+[node name="CharNameLabel" type="Label" parent="CanvasLayer/DialogueBox"]
+visible = false
+layout_mode = 0
+offset_left = 1230.0
+offset_right = 1430.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 35
+text = "elba"
+autowrap_mode = 2
+
+[node name="DialogueLabel" type="Label" parent="CanvasLayer/DialogueBox"]
+visible = false
+layout_mode = 0
+offset_left = 1100.0
+offset_top = 30.0
+offset_right = 1300.0
+offset_bottom = 195.0
+theme_override_font_sizes/font_size = 35
+vertical_alignment = 1
 
 [connection signal="body_entered" from="NPC_Elba/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="NPC_Elba/Area2D" to="Player" method="_on_area_2d_body_exited"]
