@@ -1,0 +1,51 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1742126557
+area_2d.gd::GDScript/GDScript::2190433604131303805::1734271756::0::1::::<>Area2D<><>0<>0<><>::
+dialogue_box.gd::GDScript/GDScript::4208733701798271046::1742051472::0::1::::<>ColorRect<><>0<>0<><>::
+dialogue_system.gd::GDScript/GDScript::8442493468548464146::1736232629::0::1::::<>Node<><>0<>0<><>::
+GODOT_COPYRIGHT.txt::TextFile/TextFile::-1::1740626187::0::1::::<><><>0<>0<><>::
+icon.svg::CompressedTexture2D/CompressedTexture2D::3800619238866317132::1733383007::1742126418::1::::<><><>0<>0<>39093364c53ccd1e256d3a9bd4741d46<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+npc_elba.gd::GDScript/GDScript::5335498148347046344::1733477132::0::1::::<>Sprite2D<><>0<>0<><>::
+player.gd::GDScript/GDScript::6948481996897395214::1733459145::0::1::::<>Sprite2D<><>0<>0<><>::
+README.md::TextFile/TextFile::-1::1740626243::0::1::::<><><>0<>0<><>::
+旅商人.gd::GDScript/GDScript::1285070641547698441::1742050607::0::1::::<>StaticBody2D<><>0<>0<><>::
+::res://img/::1742126418
+elba.png::CompressedTexture2D/CompressedTexture2D::2370071099883970256::1733465218::1742126418::1::::<><><>0<>0<>ddf31b94a5d8c24496b3bc40f594fae0<>res://.godot/imported/elba.png-ddba00b34a277152d37c8c701c1c17ad.ctex::
+ForestRoad.png::CompressedTexture2D/CompressedTexture2D::5228946480828205578::1740140531::1742126418::1::::<><><>0<>0<>fcfe6fd790e25d042c9374673da813e3<>res://.godot/imported/ForestRoad.png-bcfe67c4969ba3a923d21b6be342fae3.ctex::
+foresttiles.png::CompressedTexture2D/CompressedTexture2D::6862858481817550543::1739970440::1742126418::1::::<><><>0<>0<>28338c02ef27fbe2872ff8aa1eafe949<>res://.godot/imported/foresttiles.png-ffe6a40a180428ab3e9620bc68bec807.ctex::
+map1.png::CompressedTexture2D/CompressedTexture2D::2393428682699580739::1733383007::1742126418::1::::<><><>0<>0<>3f8730f1093ae0b7ea65f464b1368485<>res://.godot/imported/map1.png-3a209e1dac35fb5a0dfa18073a0e324f.ctex::
+map1_merchant.png::CompressedTexture2D/CompressedTexture2D::150337242473221889::1740223176::1742126418::1::::<><><>0<>0<>e786fb89036517889d5ed1b68d5dded7<>res://.godot/imported/map1_merchant.png-6757563977b9aa790254dbb56ff5983b.ctex::
+::res://img/PNG/::1733464242
+::res://img/PNG/24x32/::1742126418
+thief.png::CompressedTexture2D/CompressedTexture2D::1195800802746373923::1733464242::1742126418::1::::<><><>0<>0<>232ab7b3dc8f0ef87712a2d648ac5f22<>res://.godot/imported/thief.png-20549c805c01b47ebf899fcf5f762fe2.ctex::
+::res://img/PNG/48x64_scale2x/::1742126418
+thief.png::CompressedTexture2D/CompressedTexture2D::9118388487018387792::1733464242::1742126418::1::::<><><>0<>0<>7ead5b938d77bfbea42ecde7ab612476<>res://.godot/imported/thief.png-92d455ec4e35121d7eb2438dbb77d41f.ctex::
+::res://img/source/::1733464242
+::res://img/アレン/::1742126418
+Player 上0.png::CompressedTexture2D/CompressedTexture2D::6524119425647627165::1733577818::1742126418::1::::<><><>0<>0<>684cdef5d31cd9536e605c45cda84293<>res://.godot/imported/Player 上0.png-9c44221d97adfea9fe15fcbefb755a6b.ctex::
+Player 上1.png::CompressedTexture2D/CompressedTexture2D::8904434680052695462::1733577894::1742126418::1::::<><><>0<>0<>87403cb3a0dfea3ef017aa8c5b1fb62a<>res://.godot/imported/Player 上1.png-21cea37d173e0d28b3fa9a22a43aea9f.ctex::
+Player 上2.png::CompressedTexture2D/CompressedTexture2D::9555554143450319::1733577957::1742126418::1::::<><><>0<>0<>2fcb063fd1f019a4161a0a576d7d0ef9<>res://.godot/imported/Player 上2.png-1be890de7efa765d1af81bf5bcad13f2.ctex::
+Player 下1.png::CompressedTexture2D/CompressedTexture2D::2718343441037119346::1733577540::1742126418::1::::<><><>0<>0<>e5bd056f6eb6f5eae4ea98ea91753f33<>res://.godot/imported/Player 下1.png-ccdf4bd9fece5af0351063cf90ef43de.ctex::
+Player 下2.png::CompressedTexture2D/CompressedTexture2D::69040849236845803::1733577648::1742126418::1::::<><><>0<>0<>a279aae56403b4302979c5cfc6a3a826<>res://.godot/imported/Player 下2.png-d8bfcf286cb64597a24b7861674dde4c.ctex::
+Player 右0.png::CompressedTexture2D/CompressedTexture2D::7789077768648577925::1733578071::1742126418::1::::<><><>0<>0<>3aee7f59e333875c3688a8b1ca238ecf<>res://.godot/imported/Player 右0.png-53ab4f248c91c1f713b0cc74e3902ffd.ctex::
+Player 右1.png::CompressedTexture2D/CompressedTexture2D::6619532072767682035::1733578147::1742126418::1::::<><><>0<>0<>97fa0939ffcc2473d8095a5f26a53b95<>res://.godot/imported/Player 右1.png-bd6012787f31f3ee830b078e2d968e60.ctex::
+Player 右2.png::CompressedTexture2D/CompressedTexture2D::3784628400421632699::1733578217::1742126418::1::::<><><>0<>0<>eda950c7ef61c9f658bdf1c8acf8fbd8<>res://.godot/imported/Player 右2.png-15149c383737fa028f08b0060ed31035.ctex::
+Player 左0.png::CompressedTexture2D/CompressedTexture2D::6725348395738853947::1733578329::1742126418::1::::<><><>0<>0<>a0f4e684b0ef5f1f185cfe96cd5f388a<>res://.godot/imported/Player 左0.png-4063c7841ba65763727f1dd3667e8cb8.ctex::
+Player 左1.png::CompressedTexture2D/CompressedTexture2D::3533268704857294993::1733578395::1742126418::1::::<><><>0<>0<>8a30febd98c9b935536802c63f0ffaed<>res://.godot/imported/Player 左1.png-e22d12ac26da1948ccfe768c1d6fd6e4.ctex::
+Player 左2.png::CompressedTexture2D/CompressedTexture2D::6371756839495637524::1733578474::1742126418::1::::<><><>0<>0<>7f6e3eccce109bb9b753240c07640c95<>res://.godot/imported/Player 左2.png-ea69651301c3dbb808dc5a0156c91beb.ctex::
+Player.png::CompressedTexture2D/CompressedTexture2D::3346098292481989550::1733576774::1742126418::1::::<><><>0<>0<>fdd6e0098f9d3665c338792613db285d<>res://.godot/imported/Player.png-29c3b375088ffbfec45a36715c5602a8.ctex::
+アレン.png::CompressedTexture2D/CompressedTexture2D::5761833355277700527::1733383007::1742126418::1::::<><><>0<>0<>6cacb909a68910091d6e742e71927e0d<>res://.godot/imported/アレン.png-a08e929e26bc5db16221ac4a5f82c43d.ctex::
+アレン差分.png::CompressedTexture2D/CompressedTexture2D::8682572333005941250::1733576256::1742126418::1::::<><><>0<>0<>4d43e1362fac21dc8de107348a32e858<>res://.godot/imported/アレン差分.png-cde9d192270169d91a64863b07c11e04.ctex::
+ペンダント.png::CompressedTexture2D/CompressedTexture2D::5963393885432787491::1733383007::1742126418::1::::<><><>0<>0<>092782955a9d32d7a022a107dde0513f<>res://.godot/imported/ペンダント.png-20bebd0c5b7c11e712d44470e003a958.ctex::
+::res://img/使ってない奴/::1742126418
+captive_tomi-tileset.png::CompressedTexture2D/CompressedTexture2D::6555392588098369161::1733383007::1742126418::1::::<><><>0<>0<>167fb8c9f5f61f67884dfea562441594<>res://.godot/imported/captive_tomi-tileset.png-c5f2c272a720befcea06a337e8e28fd1.ctex::
+CHANGES.txt::TextFile/TextFile::-1::1733464242::0::1::::<><><>0<>0<><>::
+LICENSE.txt::TextFile/TextFile::-1::1733464242::0::1::::<><><>0<>0<><>::
+preview.png::CompressedTexture2D/CompressedTexture2D::681208824626857466::1733464242::1742126418::1::::<><><>0<>0<>0f62b9c4d64407b805def76167bff998<>res://.godot/imported/preview.png-1b0ac6957a11b203b0b9941a9f08531e.ctex::
+README.txt::TextFile/TextFile::-1::1733464242::0::1::::<><><>0<>0<><>::
+sources.md::TextFile/TextFile::-1::1733464242::0::1::::<><><>0<>0<><>::
+マップパーツ.png::CompressedTexture2D/CompressedTexture2D::7707947682620470931::1733383007::1742126418::1::::<><><>0<>0<>53861978ea53eeae28f463f705d9d66e<>res://.godot/imported/マップパーツ.png-afb77422feb0e5e7862d34a16caa9011.ctex::
+::res://scenes/::1742126418
+ForestRoad.tscn::PackedScene::7114090868634102548::1742126558::0::1::::<><><>0<>0<><>::uid://cgq68qf7q74gk::::res://img/ForestRoad.png
+map_1.tscn::PackedScene::4566812081328909181::1742126558::0::1::::<><><>0<>0<><>::uid://badnokl77p2t0::::res://img/map1.png<>uid://bnw40raifeyc1::::res://img/アレン/Player.png<>uid://cy7lj8ty5t4sn::::res://img/アレン/Player 上0.png<>uid://di8c8cu687elp::::res://img/アレン/Player 右0.png<>uid://c222rgl4k4fb4::::res://img/アレン/Player 左0.png<>uid://dy4m0dnima4yc::::res://img/アレン/Player 上1.png<>uid://evm4vy70ml8::::res://img/アレン/Player 上2.png<>uid://bey1ypsd11dpy::::res://img/アレン/Player 下1.png<>uid://8pdffqi6ld8::::res://img/アレン/Player 下2.png<>uid://c1ksyxneun6l0::::res://img/アレン/Player 右1.png<>uid://bt6kjn85jbyf0::::res://img/アレン/Player 右2.png<>uid://bqlsoi1hfc0g8::::res://img/アレン/Player 左1.png<>uid://cw1r50jrkf6we::::res://img/アレン/Player 左2.png<>uid://vql5ta4mepwe::::res://scenes/npc_elba.gd<>uid://81cyv2kwg5rg::::res://img/elba.png<>uid://6hceem3hdjy8::::res://area_2d.gd<>uid://b070h16dlxa67::::res://dialogue_box.gd<>uid://skq6qeko8ttp::::res://旅商人.gd<>uid://ce3bdqgwp0s8::::res://img/map1_merchant.png
+npc_elba.gd::GDScript/GDScript::1507718220478705836::1741962025::0::1::::<>StaticBody2D<><>0<>0<><>::

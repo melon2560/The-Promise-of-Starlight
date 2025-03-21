@@ -9,56 +9,38 @@ extends ColorRect
 var current_dialogue_index = 0  # 現在の会話の位置
 var is_player_turn = false  # プレイヤーのターンかどうか
 var is_dialogue_active = false  # 会話中かどうか
+var npc_script = null  # 💡 どの NPC かを保存する
+var last_choice = -1  # ✅ 最後に選んだ選択肢を記録
+var event_flag
 
 # =======================================================
-# 会話ウィンドウに表示するメイン関数
-#  - character_name: 表示するキャラ名
-#  - dialogue_text:  セリフ本文
-#  - choices:        選択肢の配列（["選択肢1","選択肢2",...]）
-#  - choice_indices: 選択肢を押したとき、process_player_choice() に送りたい番号の配列（[2,3,...]等）
-#                     （指定しない or [] の場合は [0,1,2...] の連番で代わりに作る）
+# 会話を開始
 # =======================================================
-func show_dialogue(
-	character_name: String,
-	dialogue_text: String,
-	choices: Array,
-	choice_indices: Array = []
-) -> void:
-	# キャラ名とセリフ表示
-	char_name_label.text = character_name
-	dialogue_label.text = dialogue_text
+func show_dialogue(npc: Object, choice_index: int = -1) -> void:
+	npc_script = npc  # ✅ NPC を記録
+	
+	# 🔹 choice_index が -1 の場合は最初の会話
+	var dialogue_data = npc_script.get_dialogue(choice_index, "")
+
+	# 🔹 取得した会話データを UI にセット
+	char_name_label.text = dialogue_data["name"]
+	dialogue_label.text = dialogue_data["text"]
 	self.show()
 	char_name_label.show()
 	dialogue_label.show()
 	is_dialogue_active = true
 
-	# 選択肢がないならボタン隠しておしまい
-	if choices.size() == 0:
-		button1.hide()
-		button2.hide()
-		return
-
-	# choice_indices がなければデフォルトで連番[0..N-1]作る
-	if choice_indices.size() == 0:
-		var default_indices = []
-		for i in range(choices.size()):
-			default_indices.append(i)
-		choice_indices = default_indices
-
-	# 選択肢を表示
-	show_choices(choices, choice_indices)
-
+	# 🔹 選択肢の表示
+	show_choices(dialogue_data["choices"], dialogue_data["choice_indices"])
 
 # =======================================================
-# 選択肢ボタンを表示して、押されたら process_player_choice() を呼ぶ
-#  - choices:        選択肢テキストの配列
-#  - choice_indices: 各ボタンに対応したインデックス番号の配列
+# 選択肢をボタンにセット
 # =======================================================
 func show_choices(choices: Array, choice_indices: Array):
 	button1.hide()
 	button2.hide()
 
-	# 既存の押下イベントをいったん切ってから再接続
+	# 既存の押下イベントを削除
 	if button1.pressed.is_connected(process_player_choice):
 		button1.pressed.disconnect(process_player_choice)
 	if button2.pressed.is_connected(process_player_choice):
@@ -68,69 +50,35 @@ func show_choices(choices: Array, choice_indices: Array):
 	if choices.size() > 0:
 		button1.text = choices[0]
 		button1.show()
-		button1.pressed.connect(func():
-			process_player_choice(choice_indices[0])
-		)
+		button1.pressed.connect(process_player_choice.bind(choice_indices[0]))  # 🔹 bind() を使う
 
 	# ボタン2
 	if choices.size() > 1:
 		button2.text = choices[1]
 		button2.show()
-		button2.pressed.connect(func():
-			process_player_choice(choice_indices[1])
-		)
-
+		button2.pressed.connect(process_player_choice.bind(choice_indices[1]))  # 🔹 bind() を使う
 
 # =======================================================
-# ボタンが押されたときに呼ばれる。インデックスで会話分岐処理
+# 選択肢を選んだときに NPC の get_dialogue() を呼ぶ
 # =======================================================
 func process_player_choice(choice_index: int):
-	button1.hide()
-	button2.hide()
+	# 🔹 NPC から次の会話データを取得
+	# 🔹 まず get_dialogue() をフラグなしで取得
+	var dialogue_data = npc_script.get_dialogue(choice_index, "")
 
-	# 1回目の選択肢
-	if choice_index == 0:
-		# 「こんにちは！」を押した流れ
-		show_dialogue(
-			"エルバ",
-			"こんにちは、アレン！",
-			["元気？", "最近どう？"],
-			[2, 3]  # ← process_player_choice に 2 or 3を渡すようにする
-		)
-	elif choice_index == 1:
-		# 「あなたは誰ですか？」を押した流れ
-		show_dialogue(
-			"エルバ",
-			"私はエルバです！",
-			["よろしく！", "何してるの？"],
-			[4, 5]  # ← 4か5を渡すようにする
-		)
+	# 🔹 event_flag が dialogue_data に含まれているなら取得
+	event_flag = dialogue_data.get("event_flag", "")
 
-	# 2回目以降の選択肢
-	elif choice_index == 2:
-		show_dialogue(
-			"エルバ",
-			"元気です！",
-			[]  # もう次の選択肢を用意しないなら空配列
-		)
-	elif choice_index == 3:
-		show_dialogue(
-			"エルバ",
-			"最近は忙しいです！",
-			[]
-		)
-	elif choice_index == 4:
-		show_dialogue(
-			"エルバ",
-			"よろしくお願いします！",
-			[]
-		)
-	elif choice_index == 5:
-		show_dialogue(
-			"エルバ",
-			"散歩です！",
-			[]
-		)
+	# 🔹 event_flag を get_dialogue() に渡して再取得
+	dialogue_data = npc_script.get_dialogue(choice_index, event_flag)
+
+	char_name_label.text = dialogue_data["name"]
+	dialogue_label.text = dialogue_data["text"]
+	show_choices(dialogue_data["choices"], dialogue_data["choice_indices"])
+
+	# 🔹 選択肢がない（最後の会話）なら自動で hide_dialogue() を呼ぶ
+	if dialogue_data["choices"].size() == 0:
+		_input(InputEventMouseButton)
 
 # 初期化処理
 func _ready():
@@ -161,10 +109,13 @@ func set_size_and_position(new_position: Vector2, new_size: Vector2):
 	
 	# 会話ウィンドウを非表示
 func hide_dialogue():
-	self.hide()  # ColorRect全体を非表示
-	char_name_label.hide()  # キャラ名非表示
-	dialogue_label.hide()  # セリフ非表示
-	is_dialogue_active = false  # 会話中フラグをオフ
+	self.hide()
+	char_name_label.hide()
+	dialogue_label.hide()
+	is_dialogue_active = false
+	
+	if event_flag == "change_scene":
+		npc_script.end_conversation()
 
 func _input(event):
 	# 🔹 ダイアログが表示中 かつ ボタンが非表示のときのみ閉じる
